@@ -3,6 +3,9 @@
 
 <head>
     <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 
 <body>
@@ -22,35 +25,23 @@
             </div>
 
         </div>
-        <div class="menu">
+        <div class="menu" id="menu">
 
 
-            <div>
-
-                <div class="button">VIDA INFINITA</div>
-            </div>
-            <div>
+            <div id="btn-switch" style="display: none">
 
                 <div class="button">VIDA INFINITA</div>
             </div>
-            <div>
-
-                <div class="button">VIDA INFINITA</div>
+          
+            <div class="close-button">
+                <b>
+                    CLOSE
+                </b>
             </div>
-            <div>
-
-                <div class="button">VIDA INFINITA</div>
-
-                <br>melhor hack deste jogo confie em nos/primeira temporada 01th
-                <div class="close-button">
-                    <b>
-                        CLOSE
-                    </b>
-                </div>
-            </div>
-
 
         </div>
+
+       
     </div>
 
 
@@ -116,6 +107,14 @@
         width: 370px;
     }
 
+    .button:active {
+        border-left: 10px solid yellow;
+    }
+
+    .button-ennabled{
+        border-left: solid 32px lightgreen;
+    }
+
 
     .close-button {
         background: #efc609;
@@ -131,8 +130,44 @@
         font-weight: bold;
         font-size: 1.5em;
         font-family: "Arial Black", Gadget, sans-serif;
+        
 
 
 
     }
 </style>
+
+
+
+<script>
+
+
+
+    function addOption(name, callback) {
+        const dv = document.getElementById("btn-switch").cloneNode(true);
+
+        
+        dv.style.display = "block";
+        const button = dv.querySelector(".button")
+        button.innerText=name
+        document.getElementById("menu").appendChild(dv);
+    
+            button.onclick = function() {
+                button.classList.toggle("button-ennabled");
+                if (callback) {
+                callback()
+                }
+            
+           
+        }
+    }
+
+
+    addOption("OPTION 1", function() {
+       
+    })
+    addOption("OPTION 2")
+    addOption("OPTION3")
+
+
+</script>

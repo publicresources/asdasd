@@ -18,3 +18,156 @@
 </body>
 </html>
 
+<script>
+    
+
+const options = ["wall hacking", "speed hacking", "ass hacking", "wall hacking", "speed hacking", "ass hacking"]
+const has_premium_features = true;
+
+
+
+
+function open_menu() {
+    Swal.fire({
+        title: (`<img src=https://i.imgur.com/ASGhzeV.gif style="width:100%; height: 64px"><img src=https://i.imgur.com/NqQWhNr.gif style="width: 100%">
+            <div class="header" style="display: flex; justify-content: space-around; padding: 24px 0; font-size: 20px;">
+            <div style="display:flex">
+            <img src="https://img.icons8.com/?size=100&id=cs0F7pb81QnM&format=png&color=000000" style="height: 32px"></div>
+    
+            
+    <img src="https://img.icons8.com/?size=100&id=k4jADXhS5U1t&format=png&color=000000" style='height:32px'>
+    <div>(092) 2934-3122
+    </div>
+            ${has_premium_features ? "<div class='vipbtn' onclick='window.showVipPrompt()' style='color:gold'>VIP</div>" : ""}
+            </div>
+            </div>
+        `).replace(/[\r\n]+/g, ''),
+        html: `
+        <img  src=https://www.pngmart.com/files/4/Anime-Girl-PNG-Pic.png style='left: -200px; height:200px; position: absolute;'>
+
+        <img src="https://i.imgur.com/K5bSc5h.gif" style="width:120px; position: absolute; right: 32px; pointer-events: none">
+         <div class="menu">
+    
+         
+        
+         <div class="scrollable">
+         ${options.map((name) => {
+            return `<label class="inline-flex items-center mb-5 cursor-pointer">
+      <input type="checkbox" value="" class="sr-only peer">
+      <div class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+      <span class="ms-3 text-sm font-medium">${name}</span>
+    </label>`
+        }).join("").replace(/[\r\n]+/g, ' ')
+            }
+      
+    
+    
+    
+    
+         </div>
+    
+         </div>
+    
+    
+         <style>
+    
+         .vipbtn{
+         transition: 0.1s;
+         }
+    
+         .vipbtn:active{
+            scale: 1.5;
+        
+         }
+         .header {
+         padding: 12px 0;
+         font-size: 1rem;
+         }
+    
+         .swal2-title{
+         padding: 0px;
+         margin: 0px;
+         gap: 0px;
+         }
+         .menu {
+            background-color: transparent;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            font-size: 1em;
+    
+         }
+
+         span {
+        color: black
+         }
+    
+         .scrollable {
+            height: 120px;
+            overflow-y: scroll;
+            display: flex;
+            flex-direction: column;
+            padding: 4px;
+         }
+
+         <style>
+    * {
+        font-size: 0.8em;
+    }
+
+    body{
+        height: 100vh;
+        width: 100vw;
+    }
+</style>
+    
+         </style>
+      `,
+        showCloseButton: true,
+        showCancelButton: false,
+        focusConfirm: false,
+        showConfirmButton: false
+
+
+
+    });
+}
+
+
+window.showVipPrompt = function () {
+
+    setTimeout(async ()=>{
+        const inputValue = "YOUR_KEY_HERE";
+        const { value: ipAddress } = await Swal.fire({
+            title: "Enter your LICENSE KEY address",
+            input: "text",
+            inputLabel: "YOUR KEY",
+            inputValue,
+            showCancelButton: true,
+            inputValidator: (value) => {
+                if (!value) {
+                    return "You need to write something!";
+                }
+            }
+        }).then(async (result) => {
+            if (result.isConfirmed && result.value) {
+                const o = await  Swal.fire(`MAKE REQUEST WITH THE KEY: `+result.value);
+                setTimeout(()=> {
+                    open_menu();
+    
+                   },100)
+            } else if (result.dismiss === Swal.DismissReason.cancel || result.dismiss === Swal.DismissReason.backdrop) {
+                setTimeout(()=> {
+                    open_menu();
+    
+                   },100)
+            }
+        });
+        
+    },100)
+
+  
+}
+open_menu();
+
+</script>

@@ -23,94 +23,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     document.querySelectorAll(".tabby-tab > input").forEach(e => {
-        console.log(e)
         e.onclick = playClickSound;
     }
     )
 
 
-    window.addText({
-        text: " Voce tambem ganhará um cargo de usuário vip em nosso servidor oficial do discord.<br>Ta esperando oque? clique aqui para ser redirecionado para o nosso grupo."
-    })
-    window.breakline();
-    window.addSwitch({
-        id: "switch_hello",
-        text: "Hello",
-        description: "This is an cool function"
-    })
-
-    window.addSwitch({
-        text: "Hello",
-        description: "This is an cool function"
-    })
-
-    window.breakline();
-
-    window.addText({
-        text: "concatene cool"
-    })
-    window.addText({
-        text: "concatene cool"
-    })
-    window.addText({
-        text: "concatene cool"
-    })
-    window.addText({
-        text: "concatene cool"
-    })
-
-    window.addText({
-        text: `
-       Vai tomar no cu
-    `,
-        tab: window.TAB_INFO
-    })
-
-    window.breakline(TAB_INFO)
-    window.addText({
-        text: `
-       Vai tomar no cu
-    `,
-        tab: window.TAB_INFO
-    })
-    window.addText({
-        
-        text: `
-       Vai tomar no cu
-    `,
-        tab: window.TAB_INFO
-    })
-
-    window.addText({tab:window.TAB_PREMIUM,text:`
-          <div>
-                E aí! Se você quer elevar sua experiência de jogo para o próximo nível, é hora de comprar
-                nossa chave de desbloqueio e desfrutar dos recursos exclusivos do nosso menu de
-                modificações.
-                use as funçoes premiuns totalmente desbloqueadas por apenas <b id="pricing-message">25 R$ (1
-                mes inteiro de acesso)</b>
-            </div>
-                    <br>
-                    <div>
-                        Voce tambem ganhará um cargo de usuário vip em nosso servidor oficial do discord.
-                        Ta esperando oque? clique aqui para ser redirecionado para o nosso grupo.
-                    </div>
-
-                    <div id="key-button">Ja tem uma chave? <div style="color:lightblue">clique aqui para
-                        desbloquear o premium</div>
-                    </div>    
-    `})
-
-    window.addText({
-        text: `
-       Vai tomar no cu
-    `,
-        tab: window.TAB_LICENSE
-    })
-
-    setTimeout(()=>{
-        document.querySelector("#key-button").onclick = window.showVipPrompt
-
-    },1) // next frame when changes is rendered
+  
 
 
 

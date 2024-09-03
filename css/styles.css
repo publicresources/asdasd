@@ -1,13 +1,17 @@
+
+
+
 .menu-control{
     width: 360px;
     max-width: 90vw;
     height: 300px;
-    max-height: 90%;
+    max-height: 100%;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: calc(50% - 10%);
+    left: calc(50% - 10%);
     transform: translate(-50%,-50%);
     display: flex;
+    scale: 80%;
     
 }
 
@@ -38,7 +42,7 @@ body {
 
 body { 
   height: 100%;
-  background-color: #333; 
+  background-color: #0b0b0b32; 
   color: whitesmoke; 
   font-size: 12px; 
   font-family: 'Sans-serif';
@@ -48,8 +52,7 @@ a { color: dodgerblue; text-decoration: none; border-bottom: 1px dotted; }
 a:hover { color: tomato; }
 
 .container { 
-  max-width: 960px; 
-  height: 98%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   background-color:  rgb(76, 76, 76);
@@ -73,14 +76,17 @@ a:hover { color: tomato; }
 
   border-radius: 8px 8px 0 0;
 
+
 }
 
 .tabby-tab {
   flex: 1;
+  
 }
 
 .tabby-tab label {
-  display: block;
+  display: flex;
+  align-items: center;
   box-sizing: border-box;
   /* tab content must clear this */
     height: 40px;
@@ -90,6 +96,7 @@ a:hover { color: tomato; }
   background: #272727;
   cursor: pointer;
   transition: background 0.5s ease;
+  
 
   
 }
@@ -119,6 +126,7 @@ a:hover { color: tomato; }
     transform-origin: top left;
 
     overflow-y: scroll;
+    max-height: 100%;
   
 }
 
@@ -145,23 +153,6 @@ a:hover { color: tomato; }
     transform: scale(1);
 }
 
-/* BREAKPOINTS ----- */
-@media screen and (max-width: 767px) {
-  .tabs { min-height: 200px;}
-}
-
-@media screen and (max-width: 480px) {
-  .tabs { min-height: 580px; }
-  .tabby-tab label { 
-    height: 60px;
-  }
-  .tabby-content { top: 60px; }
-  .tabby-content img {
-    float: none;
-    margin-right: 0;
-    margin-bottom: 20px;
-  }
-}
 
 
 .tab-button{

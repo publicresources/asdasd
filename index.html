@@ -24,6 +24,34 @@
 
 <body>
 
+    <div class="btn-popup icon">
+
+    </div>
+
+    <style>
+        .btn-popup {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 2px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .icon {
+            width: 52px;
+            height: 52px;
+            background-image: url(https://i.pinimg.com/originals/7b/15/a5/7b15a5bc8e5b14a6276e9ccf36361ea8.jpg);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: transparent;
+        }
+    </style>
+
     <script src="./js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
 
@@ -33,7 +61,7 @@
             <div class="tabs">
                 <div class="tabby-tab">
                     <input type="radio" id="tab-1" name="tabby-tabs" checked>
-                    <label for="tab-1">
+                    <label for="tab-1" class="tabb">
                         <div style="display: flex; gap: 12px; align-items: center;">
                             <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
                             <svg fill="currentColor" height="24px" width="24px" version="1.1" id="Layer_1"
@@ -64,7 +92,7 @@
 
                 <div class="tabby-tab">
                     <input type="radio" id="tab-2" name="tabby-tabs" checked>
-                    <label for="tab-2">
+                    <label for="tab-2" class="tabb">
                         <div style="display: flex; gap: 12px; align-items: center;">
                             <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
                             <svg fill="currentColor" width="24px" height="24px" viewBox="0 0 32 32" version="1.1"
@@ -84,7 +112,7 @@
 
                 <div class="tabby-tab">
                     <input type="radio" id="tab-3" name="tabby-tabs" checked>
-                    <label for="tab-3">
+                    <label for="tab-3" class="tabb">
                         <div style="display: flex; gap: 12px; align-items: center;">
                             <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
                             <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px"
@@ -125,6 +153,9 @@
         </div>
     </div>
 
+
+
+
 </body>
 
 </html>
@@ -139,3 +170,201 @@
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+
+
+<script>
+     {
+
+const DRAG_TYPES = {
+    ICON: "icon",
+    MENU: "menu-control"
+}
+function setup_drag(element, dragElement, dragType) {
+    let isDragging = false;
+    let initialX, initialY;
+    let distance = 0
+
+    const botaoArrastavel = dragElement || element;
+
+
+    let time = 0
+
+    let menu_and_icon_position = {
+        x: 0,
+        y: 0
+    }
+
+
+
+
+
+    let startDragging = (e) => {
+        isDragging = true;
+
+        if (e.type === 'mousedown') {
+            initialX = e.clientX - botaoArrastavel.getBoundingClientRect().left;
+            initialY = e.clientY - botaoArrastavel.getBoundingClientRect().top;
+            botaoArrastavel.style.cursor = 'grabbing';
+            time = Date.now()
+            distance = 0
+
+        } else if (e.type === 'touchstart') {
+            initialX = e.touches[0].clientX - botaoArrastavel.getBoundingClientRect().left;
+            initialY = e.touches[0].clientY - botaoArrastavel.getBoundingClientRect().top;
+            botaoArrastavel.style.cursor = 'grabbing';
+            time = Date.now()
+            distance = 0
+        }
+
+        if (dragType == DRAG_TYPES.MENU) {
+            const menu_container = document.querySelector('.popup-container')
+            menu_container.style.opacity = 0.8
+        }
+
+        if (dragType == DRAG_TYPES.ICON) {
+            const btn_popup = document.querySelector('.btn-popup')
+            btn_popup.style.opacity = 0.8
+        }
+    };
+
+
+
+
+    let dragMove = (e) => {
+        if (isDragging) {
+            let clientX, clientY;
+
+            if (e.type === 'mousemove') {
+                clientX = e.clientX;
+                clientY = e.clientY;
+                let distanceX = (clientX - initialX)
+                let distanceY = (clientY - initialY)
+                distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
+            } else if (e.type === 'touchmove') {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+
+                let distanceX = (clientX - initialX)
+                let distanceY = (clientY - initialY)
+                distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
+            }
+
+            const newX = clientX - initialX;
+            const newY = clientY - initialY;
+
+            const maxX = window.innerWidth - botaoArrastavel.offsetWidth - 2;
+            const maxY = window.innerHeight - botaoArrastavel.offsetHeight - 2;
+
+            if (newX > 0 && newX < maxX) {
+                botaoArrastavel.style.left = newX + 'px';
+            } else {
+                if (newX <= 0) {
+                    botaoArrastavel.style.left = '0px'
+                } else {
+                    botaoArrastavel.style.left = maxX + 'px'
+                }
+            }
+
+            if (newY > 0 && newY < maxY) {
+                botaoArrastavel.style.top = newY + 'px';
+            } else {
+                if (newY <= 0) {
+                    botaoArrastavel.style.top = '0px'
+                } else {
+                    botaoArrastavel.style.top = maxY + 'px'
+
+                }
+            }
+
+            menu_and_icon_position.x = newX
+            menu_and_icon_position.y = newY
+        }
+    }
+
+
+    let stopDragging = () => {
+        isDragging = false;
+        botaoArrastavel.style.cursor = 'grab';
+        if (dragType == DRAG_TYPES.ICON) {
+            if (((Date.now() - time) < 500) && distance < 20) {
+
+                setTimeout(() => {
+                    const btn_popup = document.querySelector('.icon')
+                    const menu_container = document.querySelector(".menu-control")
+                    menu_container.style.display = 'flex';
+
+                    btn_popup.style.display = "none"
+                    time = Date.now()
+                    const botaoArrastavel = btn_popup
+
+
+                    const newX = btn_popup.style.left.replace("px", "");
+                    const newY = btn_popup.style.top.replace("px", "");
+
+                    const maxX = window.innerWidth - botaoArrastavel.offsetWidth;
+                    const maxY = window.innerHeight - botaoArrastavel.offsetHeight;
+
+
+
+                    if (newX > 0 && newX < maxX) {
+                        botaoArrastavel.style.left = newX + 'px';
+                    } else {
+                        if (newX <= 0) {
+                            botaoArrastavel.style.left = '0px'
+                        } else {
+                            botaoArrastavel.style.left = maxX + 'px'
+                        }
+                    }
+
+                    if (newY > 0 && newY < maxY) {
+                        botaoArrastavel.style.top = newY + 'px';
+                    } else {
+                        if (newY <= 0) {
+                            botaoArrastavel.style.top = '0px'
+                        } else {
+                            botaoArrastavel.style.top = maxY + 'px'
+
+                        }
+                    }
+                }, 100)
+            }
+
+        }
+
+
+        if (dragType == DRAG_TYPES.MENU) {
+            const menu_container = document.querySelector(".menu-control")
+            menu_container.style.opacity = 1
+        }
+
+        if (dragType == DRAG_TYPES.ICON) {
+            const btn_popup = document.querySelector('.icon')
+            btn_popup.style.opacity = 1
+        }
+
+    };
+
+    element.addEventListener('mousedown', startDragging);
+    element.addEventListener('touchstart', startDragging);
+
+    document.addEventListener('mousemove', dragMove);
+    document.addEventListener('touchmove', dragMove);
+
+    document.addEventListener('mouseup', stopDragging);
+    document.addEventListener('touchend', stopDragging);
+
+
+}
+
+setup_drag(document.querySelector('.icon'), null, DRAG_TYPES.ICON)
+
+
+document.querySelector(".menu-control").style.display = "none"
+
+
+document.querySelector("#close-button").addEventListener("click",()=>{
+    document.querySelector(".menu-control").style.display = "none"
+    document.querySelector('.icon').style.display = "block"
+})
+}
+</script>
